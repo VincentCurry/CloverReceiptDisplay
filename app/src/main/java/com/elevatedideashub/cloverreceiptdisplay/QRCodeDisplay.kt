@@ -1,6 +1,7 @@
 package com.elevatedideashub.cloverreceiptdisplay
 
 import android.app.Activity
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
@@ -20,23 +21,20 @@ class QRCodeDisplay : Activity() {
 
         setContentView(R.layout.qr_code_display)
 
-        setResult(RESULT_CANCELED)
-
         setSystemUiVisibility()
 
         val cloverPaymentId = intent.getStringExtra(Intents.EXTRA_CLOVER_PAYMENT_ID)
-        var qrImage = findViewById<ImageView>(R.id.qrCodeView)
-        var closeButton = findViewById<Button>(R.id.closeButton)
+        val qrImage = findViewById<ImageView>(R.id.qrCodeView)
+        val closeButton = findViewById<Button>(R.id.closeButton)
 
-        closeButton.setOnClickListener(View.OnClickListener { setResult(RESULT_OK) })
+        closeButton.setOnClickListener {
+            moveTaskToBack(true) }
 
         val size = 512
         val qrCodeContent = "${getString(R.string.host)}${cloverPaymentId}/${getString(R.string.clover_business_id)}"
-        val hints = hashMapOf<EncodeHintType, Int>().also { it[EncodeHintType.MARGIN] = 1 } // Make the QR code buffer border narrower
         val bits = QRCodeWriter().encode(qrCodeContent, BarcodeFormat.QR_CODE, size, size)
         val qrBitmap = Bitmap.createBitmap(size, size, Bitmap.Config.RGB_565).also {
-            for (x in 0 until size) {
-                for (y in 0 until size) {
+            for (x in 0 until size) {                for (y in 0 until size) {
                     it.setPixel(x, y, if (bits[x, y]) Color.BLACK else Color.WHITE)
                 }
             }
