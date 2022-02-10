@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CloverReceiptDisplay</string>
+    <string name="qr_receipt_activity_title">Scan QR Code for Receipt</string>
+    <string name="host">https://kyn6mufbs4.execute-api.eu-west-1.amazonaws.com/Prod/api/receipt/receiptNumber/</string>
+    <string name="clover_business_id">D0BDFAC5-0259-471F-BFC3-288590976013</string>
+    <string name="app_url">https://kyn6mufbs4.execute-api.eu-west-1.amazonaws.com/Prod/api/receipt</string>
+</resources>
