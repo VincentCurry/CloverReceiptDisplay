@@ -19,6 +19,15 @@
             </intent-filter>
         </activity>
 
+        <!--activity
+            android:name=".DisplayLoyaltyCardRedeem"
+            android:label="Display loyalty card redemption">
+            <intent-filter>
+                <action android:name="clover.intent.action.MODIFY_ORDER"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity-->
+
         <receiver
             android:name=".BroadcastReceiverPaymentProcessed"
             android:exported="true"
@@ -29,12 +38,26 @@
             </intent-filter>
         </receiver>
 
+        <receiver
+            android:name=".BroadcastReceiverAppNotification"
+            android:exported="true"
+            android:enabled="true">
+
+            <intent-filter>
+                <action android:name="com.clover.sdk.app.intent.action.APP_NOTIFICATION" />
+            </intent-filter>
+        </receiver>
+
         <activity android:name=".QRCodeDisplay"
             android:label="@string/qr_receipt_activity_title">
             <intent-filter>
                 <action android:name="clover.intent.action.MODIFY_ORDER"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
+        </activity>
+
+        <activity android:name=".LoyaltyRedeemedMessageDisplay"
+            android:label="@string/qr_receipt_activity_title">
         </activity>
     </application>
 

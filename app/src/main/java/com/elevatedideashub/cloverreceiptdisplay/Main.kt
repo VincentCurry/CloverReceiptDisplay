@@ -19,7 +19,6 @@ import com.google.zxing.qrcode.QRCodeWriter
 
 
 class Main : Activity() {
-    val EXTRA_DATA = "data"
 
     private var qrImage: ImageView? = null
 
@@ -29,7 +28,9 @@ class Main : Activity() {
         qrImage = findViewById<ImageView>(R.id.qrCodeView)
         qrImage!!.visibility = View.GONE
         val closeButton = findViewById<Button>(com.elevatedideashub.cloverreceiptdisplay.R.id.closeButton)
+        val instructionsText = findViewById<TextView>(R.id.textView)
 
+        instructionsText.text="Scan QR Code to Redeem loyalty card"
         closeButton.setOnClickListener {
             moveTaskToBack(true) }
     }

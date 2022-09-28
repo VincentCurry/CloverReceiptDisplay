@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import com.clover.sdk.v1.Intents
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
@@ -27,6 +28,10 @@ class QRCodeDisplay : Activity() {
         val qrImage = findViewById<ImageView>(R.id.qrCodeView)
         val closeButton = findViewById<Button>(R.id.closeButton)
 
+
+        val instructionsText = findViewById<TextView>(R.id.textView)
+        instructionsText.text="This is the QR Code display so that we can see what's going on"
+
         closeButton.setOnClickListener {
             moveTaskToBack(true) }
 
@@ -44,7 +49,7 @@ class QRCodeDisplay : Activity() {
     }
 
 
-    fun setSystemUiVisibility() {
+    private fun setSystemUiVisibility() {
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN

@@ -13,6 +13,10 @@ android {
             v1SigningEnabled true
             v2SigningEnabled false
         }
+        develop {
+            v1SigningEnabled true
+            v2SigningEnabled false
+        }
     }
     compileSdk 28
 
@@ -25,12 +29,21 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+        signingConfig signingConfigs.debug
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
+        }
+        develop {
+            initWith release
+            applicationIdSuffix ".devlop"
         }
     }
     compileOptions {

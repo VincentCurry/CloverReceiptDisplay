@@ -1,10 +1,11 @@
 <resources>
-    <string name="app_name">CloverReceiptDisplay</string>
+    <string name="app_name">Clover Receipt Display</string>
     <string name="qr_receipt_activity_title">Scan QR Code for Receipt</string>
-    <string name="host">https://kyn6mufbs4.execute-api.eu-west-1.amazonaws.com/Prod/api/receipt/receiptNumber/</string>
+    <string name="host">https://xcfczgkhm9.execute-api.eu-west-1.amazonaws.com/Prod/api/receipt/receiptNumber/</string>
     <string name="clover_business_id">D0BDFAC5-0259-471F-BFC3-288590976013</string>
-    <string name="app_url">https://kyn6mufbs4.execute-api.eu-west-1.amazonaws.com/Prod/api/receipt</string>
+    <string name="app_url">https://xcfczgkhm9.execute-api.eu-west-1.amazonaws.com/Prod/api/receipt</string>
     <string name="close_qr_code_button">Close</string>
-    <string name="scanning_instructions">Scan the QR code with either your camera or the Receipt on My Phone app to generate your receipt on your phone.</string>
+    <string name="scanning_instructions">Scan the QR code with either your camera or the Receipts and Rewards app to generate your receipt on your phone.</string>
     <string name="qr_code_content_description">QR Code for receipt scanning is displayed here</string>
+    <string name="LoyaltyOfferProcessedMessage">Your loyalty offer has been processed</string>
 </resources>
