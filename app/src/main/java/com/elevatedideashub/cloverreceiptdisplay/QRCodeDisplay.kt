@@ -10,42 +10,84 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import com.clover.sdk.v1.Intents
 import com.google.zxing.BarcodeFormat
-import com.google.zxing.EncodeHintType
 import com.google.zxing.qrcode.QRCodeWriter
+
 
 class QRCodeDisplay : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        Log.d(this.packageName,"On create")
         setContentView(R.layout.qr_code_display)
-
         setSystemUiVisibility()
 
-        val cloverPaymentId = intent.getStringExtra(Intents.EXTRA_CLOVER_PAYMENT_ID)
-        val qrImage = findViewById<ImageView>(R.id.qrCodeView)
-        val closeButton = findViewById<Button>(R.id.closeButton)
+        var qrImage = findViewById<ImageView>(R.id.qrCodeView)
+        var closeButton = findViewById<Button>(R.id.closeButton)
+        var instructionsText = findViewById<TextView>(R.id.textView)
 
-
-        val instructionsText = findViewById<TextView>(R.id.textView)
-        instructionsText.text="This is the QR Code display so that we can see what's going on"
+        instructionsText.text = intent.getStringExtra(IntentConstants.messageIntent)
 
         closeButton.setOnClickListener {
-            moveTaskToBack(true) }
-
-        val size = 512
-        val qrCodeContent = "${getString(R.string.host)}${cloverPaymentId}/${getString(R.string.clover_business_id)}"
-        val bits = QRCodeWriter().encode(qrCodeContent, BarcodeFormat.QR_CODE, size, size)
-        val qrBitmap = Bitmap.createBitmap(size, size, Bitmap.Config.RGB_565).also {
-            for (x in 0 until size) {                for (y in 0 until size) {
-                    it.setPixel(x, y, if (bits[x, y]) Color.BLACK else Color.WHITE)
-                }
-            }
+            //moveTaskToBack(true)
+            //deleteCache()
+            finish()
         }
 
-        qrImage.setImageBitmap(qrBitmap)
+        //moveTaskToBack(true) }
+
+        val size = 512
+        val qrCodeContent = intent.getStringExtra(IntentConstants.qrIntent)
+
+        if(qrCodeContent==null) {
+            moveTaskToBack(true)
+        } else {
+            val bits = QRCodeWriter().encode(qrCodeContent, BarcodeFormat.QR_CODE, size, size)
+            val qrBitmap = Bitmap.createBitmap(size, size, Bitmap.Config.RGB_565).also {
+                for (x in 0 until size) {
+                    for (y in 0 until size) {
+                        it.setPixel(x, y, if (bits[x, y]) Color.BLACK else Color.WHITE)
+                    }
+                }
+            }
+
+            qrImage.setImageBitmap(qrBitmap)
+
+            Log.d("QR Code Content", qrCodeContent)
+            Log.d("Instructions", intent.getStringExtra(IntentConstants.messageIntent))
+        }
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("QRCodeDisplay", "On start")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("QRCodeDisplay", "On Resume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("QRCodeDisplay", "On Pause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("QRCodeDisplay", "On Stop")
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        Log.d("QRCodeDisplay", "onNewIntent")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("QRCodeDisplay", "On Destroy")
     }
 
 

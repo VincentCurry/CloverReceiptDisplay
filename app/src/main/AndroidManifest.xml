@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/voucher_launcher_adaptive_fore"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -18,26 +21,33 @@
             </intent-filter>
         </activity>
 
-        <!--activity
-            android:name=".DisplayLoyaltyCardRedeem"
-            android:label="Display loyalty card redemption">
-            <intent-filter>
-                <action android:name="clover.intent.action.MODIFY_ORDER"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity-->
-
         <receiver
-            android:name=".BroadcastReceiverPaymentProcessed"
+            android:name=".BroadcastReceiverOrder"
             android:exported="true"
             android:enabled="true">
 
             <intent-filter>
                 <action android:name="com.clover.intent.action.PAYMENT_PROCESSED" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </receiver>
 
-        <receiver
+        <!--activity android:name=".PaymentProcessedActivity"
+            android:exported="true"
+            android:label="@string/qr_receipt_activity_title">
+            <intent-filter>
+                <action android:name="com.clover.intent.action.PAYMENT_PROCESSED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity-->
+
+        <activity android:name=".QRCodeDisplay" android:exported="true" >
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> <!-- android:taskAffinity causes the first two receipts to run and then no more-->
+<!--android.intent.action.BOOT_COMPLETED-->
+        <!--receiver
             android:name=".BroadcastReceiverAppNotification"
             android:exported="true"
             android:enabled="true">
@@ -45,19 +55,58 @@
             <intent-filter>
                 <action android:name="com.clover.sdk.app.intent.action.APP_NOTIFICATION" />
             </intent-filter>
-        </receiver>
+        </receiver-->
 
-        <activity android:name=".QRCodeDisplay"
+        <!--activity
+            android:name=".LoyaltyRedeemedMessageDisplay"
             android:label="@string/qr_receipt_activity_title">
             <intent-filter>
+                <action android:name="com.clover.intent.action.MODIFY_ORDER" />
+            </intent-filter>
+        </activity-->
+
+
+        <activity
+            android:name=".RedeemLoyaltyCardActivity"
+            android:label="@string/redeem_loyalty_card_button">
+            <intent-filter>
                 <action android:name="clover.intent.action.MODIFY_ORDER"/>
+
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
 
-        <activity android:name=".LoyaltyRedeemedMessageDisplay"
-            android:label="@string/qr_receipt_activity_title">
-        </activity>
+
+        <!--activity
+            android:name=".BroadcastReceiverOrder"
+            android:exported="true"
+            android:label="@string/redeem_loyalty_card_button">
+
+            <meta-data
+                android:name="clover.intent.meta.MERCHANT_TENDER_IMAGE"
+                android:resource="@mipmap/voucher_launcher_adaptive_fore" />
+
+            <intent-filter>
+                <action android:name="clover.intent.action.MERCHANT_TENDER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity-->
+
+        <!--activity
+            android:name=".BroadcastReceiverOrder"
+            android:exported="true"
+            android:enabled="true"
+            android:label="@string/redeem_loyalty_card_button">
+
+            <meta-data
+                android:name="clover.intent.meta.CUSTOMER_TENDER_IMAGE"
+                android:resource="@drawable/logo" />
+
+            <intent-filter>
+                <action android:name="clover.intent.action.CUSTOMER_TENDER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity-->
     </application>
 
 </manifest>

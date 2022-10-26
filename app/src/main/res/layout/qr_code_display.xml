@@ -26,7 +26,7 @@
         android:id="@+id/textView"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:text="@string/scanning_instructions"
+        android:text="@string/receipt_scanning_instructions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
