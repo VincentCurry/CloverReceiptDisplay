@@ -14,12 +14,13 @@ class RedeemLoyaltyCardActivity : Activity(){
         val outGoingIntent = Intent(this, QRCodeDisplay()::class.java)
         val cloverOrderId = intent.getStringExtra(EXTRA_ORDER_ID)
 
+        Log.d("Clover Order ID", cloverOrderId)
         while(!CloverReceiptApplication.merchantDetails.isLoaded){
             Thread.sleep(100)
         }
-
         val merchantId = CloverReceiptApplication.merchantDetails.merchantId
 
+        Log.d("merchantid", merchantId)
         outGoingIntent.putExtra(IntentConstants.messageIntent, this.getString( R.string.loyalty_card_redemption_instructions))
         outGoingIntent.putExtra(IntentConstants.qrIntent, "${this.getString(R.string.host)}loyaltyCardRedemption/${cloverOrderId}/${this.getString(R.string.clover_business_id)}/${merchantId}")
 

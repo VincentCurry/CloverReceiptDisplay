@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Receipts and Rewards</string>
     <string name="qr_receipt_activity_title">Scan QR Code for Receipt</string>
-    <string name="host">https://cd57-51-6-67-149.ngrok.io/api/</string>
+    <string name="host">https://0a44-51-6-67-149.ngrok.io/api/</string>
     <string name="clover_business_id">E4669ABC-A62D-4ACB-ABE0-4B3A5B12AACF</string>
     <string name="close_qr_code_button">Close</string>
     <string name="receipt_scanning_instructions">Scan the QR code with either your camera or the Receipts and Rewards app to generate your receipt on your phone.</string>

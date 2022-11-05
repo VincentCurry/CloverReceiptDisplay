@@ -44,7 +44,7 @@ class MerchantDetails ()
                 }
 
                 override fun doInBackground(vararg p0: Void?): com.clover.sdk.v1.merchant.Merchant? {
-
+Log.d("Merchant details", "doinbackground")
                     if (account == null) {
                         account = CloverAccount.getAccount(context)
                         merchantConnector = MerchantConnector(context, account, null)
@@ -66,9 +66,13 @@ class MerchantDetails ()
                 }
 
                 override fun onPostExecute(merchant: com.clover.sdk.v1.merchant.Merchant?) {
+                    Log.d("Merchant details", "OnPostExecute")
                     super.onPostExecute(merchant)
                     //if (!isFinishing) {
                     if (merchant != null) {
+                        Log.d("Merchant details", "Writing")
+                        Log.d("Merchant id", merchant.id)
+                        Log.d("Device id", merchant.deviceId)
                         CloverReceiptApplication.merchantDetails.merchantId = merchant.id
                         CloverReceiptApplication.merchantDetails.deviceId = merchant.deviceId
                         CloverReceiptApplication.merchantDetails.isLoaded = true
