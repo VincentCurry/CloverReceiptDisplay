@@ -28,8 +28,6 @@ class BroadcastReceiver : BroadcastReceiver() {
     {
         val merchantId = CloverReceiptApplication.merchantDetails.merchantId
         val paymentId = intent.getStringExtra(Intents.EXTRA_CLOVER_PAYMENT_ID)
-        Log.d("Merchant id", merchantId)
-        Log.d("Payment id", paymentId)
         val url= URL("${context?.getString(R.string.host)}clover/payment/${merchantId}/${paymentId}")
 
         val conn = url.openConnection() as HttpURLConnection
