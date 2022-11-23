@@ -44,7 +44,7 @@ class MerchantDetails ()
                 }
 
                 override fun doInBackground(vararg p0: Void?): com.clover.sdk.v1.merchant.Merchant? {
-Log.d("Merchant details", "doinbackground")
+
                     if (account == null) {
                         account = CloverAccount.getAccount(context)
                         merchantConnector = MerchantConnector(context, account, null)

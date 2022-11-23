@@ -60,36 +60,6 @@ class QRCodeDisplay : Activity() {
 
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.d("QRCodeDisplay", "On start")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("QRCodeDisplay", "On Resume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("QRCodeDisplay", "On Pause")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("QRCodeDisplay", "On Stop")
-    }
-
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        Log.d("QRCodeDisplay", "onNewIntent")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("QRCodeDisplay", "On Destroy")
-    }
-
 
     private fun setSystemUiVisibility() {
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE

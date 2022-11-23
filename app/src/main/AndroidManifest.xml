@@ -30,6 +30,17 @@
             <intent-filter>
                 <action android:name="com.clover.intent.action.PAYMENT_PROCESSED" />
                 <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="com.clover.intent.action.REFUND_PROCESSED" />
+                <action android:name="com.clover.intent.action.CREDIT_PROCESSED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".AppNotificationReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.clover.sdk.app.intent.action.APP_NOTIFICATION"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </receiver>
 

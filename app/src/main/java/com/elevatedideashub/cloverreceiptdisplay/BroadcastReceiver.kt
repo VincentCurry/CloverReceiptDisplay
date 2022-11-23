@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import com.clover.sdk.v1.Intents
+import com.clover.sdk.v1.app.AppNotificationReceiver
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.BufferedReader
@@ -13,13 +14,13 @@ import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 
-
 class BroadcastReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent) {
-        Log.e("Broadcast Received", intent.action)
         when (intent.action) {
             Intents.ACTION_ORDER_CREATED -> orderWasCreated(intent)
             Intents.ACTION_PAYMENT_PROCESSED -> paymentProcessed(context, intent)
+            "com.clover.intent.action.REFUND_PROCESSED" -> refundProcessed(intent)
+            "com.clover.intent.action.CREDIT_PROCESSED" -> refundProcessed(intent)
             else -> {}
         }
     }
@@ -50,5 +51,8 @@ class BroadcastReceiver : BroadcastReceiver() {
     }
 
     private fun orderWasCreated(intent: Intent)
+    {}
+
+    private fun refundProcessed(intent: Intent)
     {}
 }
